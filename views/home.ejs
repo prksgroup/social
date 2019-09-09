@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/css/home.css">
+<h1>WELCOME TO SOCIAL</h1>
+
+
+<div id="home-container">
+    <section id="feed-posts">
+        <h3>POSTS</h3>
+        <%if(locals.user){%>
+            <form action="/post/create" id="new-post-form" method="POST">
+                <textarea name="content" cols="50" rows="10" placeholder="Type here....."></textarea>
+                <button type="submit">Post</button>
+            </form>
+
+            <%}%>
+                <div id="post-list-container">
+                    <ul>
+
+                        <%for( i of post){%>
+                            <%-include('_post')-%>
+                                <%}%>
+
+                    </ul>
+                </div>
+    </section>
+    <section id="user-friends">
+        <h1>Friends</h1>
+        <%for(u of all_users){%>
+            <p>
+                <a href="/user/profile/<%=u.id%>">
+                    <%=u.name%>
+                </a>
+            </p>
+            <%}%>
+    </section>
+</div>
+<script src="/js/homepost.js"></script>
+<script src="/js/homecomment.js"></script>
